@@ -55,7 +55,7 @@
                                 </select>
 
                                 <button type="submit"
-                                        class="px-4 py-2 bg-black text-black text-sm rounded-lg hover:bg-gray-800 transition">
+                                        class="px-4 py-2 bg-black text-white text-sm rounded-lg hover:bg-gray-800 transition">
                                     Modifier
                                 </button>
                             </form>

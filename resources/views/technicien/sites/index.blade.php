@@ -40,7 +40,7 @@
                     </p>
 
                     <a href="{{ route('technicien.site.capteurs', $site->id) }}"
-                       class="mt-auto inline-block px-5 py-3 text-center bg-black text-black rounded-lg
+                       class="mt-auto inline-block px-5 py-3 text-center bg-black text-white rounded-lg
                               hover:bg-gray-800 transition">
                         Voir les capteurs
                     </a>

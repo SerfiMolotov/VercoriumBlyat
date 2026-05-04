@@ -34,6 +34,7 @@
                     <a href="{{ url('/dashboard') }}" class="hover:text-gray-300 transition">Tableau de bord</a>
                 @else
                     <a href="{{ route('login') }}" class="hover:text-gray-300 transition">Connexion</a>
+                    <a href="{{ route('register') }}" class="hover:text-gray-300 transition bg-gray-500 rounded ">Créer un compte</a>
                 @endauth
             @endif
         </div>
