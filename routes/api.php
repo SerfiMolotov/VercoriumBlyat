@@ -7,10 +7,14 @@ use App\Http\Controllers\Api\AuthController;
 
 Route::post('/login', [AuthController::class, 'login']);
 
-Route::get('/releves', [TestApiController::class, 'index']);
+Route::middleware('auth:sanctum')->group(function () {
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
+    Route::get('/releves', [TestApiController::class, 'index']);
+    Route::post('/addReleve', [TestApiController::class, 'addReleve']);
+    Route::get('/sites', [TestApiController::class, 'getSites']);
+    Route::get('/sites', [TestApiController::class, 'indexSites']);
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
 
-Route::post('/login', [AuthController::class, 'login']);
+});

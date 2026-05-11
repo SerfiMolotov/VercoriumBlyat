@@ -32,7 +32,7 @@
                             <tr>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">#{{ $releve->id }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $releve->created_at->format('d/m/Y') }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $releve->site ?? 'Site inconnu' }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $releve->site?->nom ?? 'Site inconnu' }}</td>
                                 <td class="px-6 py-4 text-sm text-gray-500">{{ Str::limit($releve->observations, 50) }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                     <a href="#" class="text-indigo-600 hover:text-indigo-900 mr-3">Voir</a>

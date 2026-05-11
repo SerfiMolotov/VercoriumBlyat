@@ -13,4 +13,30 @@ class TestApiController extends Controller
     {
         return response()->json(Releve::all());
     }
+    public function addReleve(Request $request){
+        $donneesValidees = $request->validate([
+            'date_releve'  => 'required|date',
+            'site_id'      => 'required|exists:sites,id',
+            'profondeur'   => 'required|numeric',
+            'observations' => 'nullable|string',
+            'anomalies'    => 'boolean',
+        ]);
+
+        $donneesValidees['user_id'] = $request->user()->id;
+
+        $releve = Releve::create($donneesValidees);
+
+        return response()->json([
+            'message' => 'Relevé créé avec succès',
+            'releve' => $releve
+        ], 201);
+    }
+    public function getSites() {
+        $sites = Site::all(['id', 'nom']);
+        return response()->json($sites);
+    }
+    public function indexSites() {
+        $sites = Site::all();
+        return response()->json($sites);
+    }
 }
