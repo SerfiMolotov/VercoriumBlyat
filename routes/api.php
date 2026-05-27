@@ -16,5 +16,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
-
+    Route::get('/sites/{id}', [TestApiController::class, 'getSite']);
+    Route::put('/sites/{id}', [TestApiController::class, 'updateSite']);
+    Route::get('/sites/{id}/capteurs', [TestApiController::class, 'getCapteursBySite']);
 });

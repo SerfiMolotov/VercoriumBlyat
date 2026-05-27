@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Releve;
 use App\Models\Site;
 use Illuminate\Http\Request;
-
+use App\Models\Capteur;
 class TestApiController extends Controller
 {
     public function index()
@@ -38,5 +38,26 @@ class TestApiController extends Controller
     public function indexSites() {
         $sites = Site::all();
         return response()->json($sites);
+    }
+    public function getSite($id) {
+        $site = Site::findOrFail($id);
+        return response()->json($site);
+    }
+
+    public function updateSite(Request $request, $id) {
+        $site = Site::findOrFail($id);
+
+        $site->update($request->all());
+
+        return response()->json([
+            'message' => 'Site mis à jour avec succès',
+            'site' => $site
+        ]);
+    }
+
+    public function getCapteursBySite($id) {
+        $capteurs = Capteur::where('site_id', $id)->get();
+
+        return response()->json($capteurs);
     }
 }
