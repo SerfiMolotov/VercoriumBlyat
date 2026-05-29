@@ -21,7 +21,7 @@
                             <span class="hidden md:inline text-slate-500">|</span>
 
                             <span class="px-2 py-1 bg-blue-500/20 text-blue-300 border border-blue-500/30 rounded font-mono text-xs uppercase tracking-widest">
-                                Rôle_Assigné : {{ Auth::user()->role ?? 'TECHNICIEN_STANDARD' }}
+                                Rôle Assigné : {{ Auth::user()->role ?? 'TECHNICIEN_STANDARD' }}
                             </span>
                         </div>
                     </div>

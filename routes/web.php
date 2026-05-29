@@ -14,9 +14,9 @@ Route::get('/', function () {
     return view('welcome');
 })->name('accueil');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [TechnicienDashboardController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -37,8 +37,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
 });
 
 Route::middleware(['auth', 'technicien'])->prefix('technicien')->group(function () {
-    Route::get('/dashboard', [TechnicienDashboardController::class, 'index'])
-        ->name('technicien.dashboard');
+
+    Route::get('/dashboard', function () {
+        return view('technicien.dashboard');
+    })->name('technicien.dashboard');
 
     Route::get('/sites', [TechnicienSiteController::class, 'index'])
         ->name('technicien.sites.index');

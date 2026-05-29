@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Capteur extends Model
 {
-    protected $fillable = ['site_id', 'nom', 'type', 'ref_serie', 'est_actif'];
+    protected $fillable = ['site_id', 'nom', 'type', 'ref_serie', 'est_actif', 'unite_mesure', 'statut'];
 
     public function site() {
         return $this->belongsTo(Site::class);

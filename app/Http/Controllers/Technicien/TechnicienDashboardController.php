@@ -12,7 +12,7 @@ class TechnicienDashboardController extends Controller
     {
         $derniersReleves = Releve::with('site')->latest()->take(5)->get();
 
-        return view('technicien.dashboard', compact('derniersReleves'));
+        return view('dashboard', compact('derniersReleves'));
     }
 }
 

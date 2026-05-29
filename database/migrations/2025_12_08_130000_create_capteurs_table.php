@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('nom');
             $table->string('type');
             $table->string('ref_serie')->nullable();
+            $table->string('unite_mesure')->nullable();
+            $table->string('statut')->default('actif');
             $table->boolean('est_actif')->default(true);
             $table->timestamps();
         });
