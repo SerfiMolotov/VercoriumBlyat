@@ -60,4 +60,22 @@ class TestApiController extends Controller
 
         return response()->json($capteurs);
     }
+
+    public function addSite(Request $request) {
+        $donneesValidees = $request->validate([
+            'nom' => 'required|string|max:255',
+            'adresse' => 'nullable|string|max:255',
+            'ville' => 'required|string|max:255',
+            'code_postal' => 'required|string|max:20',
+            'type' => 'required|string',
+            'description' => 'nullable|string',
+        ]);
+
+        $site = Site::create($donneesValidees);
+
+        return response()->json([
+            'message' => 'Site créé avec succès',
+            'site' => $site
+        ], 201);
+    }
 }
