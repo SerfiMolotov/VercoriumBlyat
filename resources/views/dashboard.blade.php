@@ -1,130 +1,132 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-slate-800 leading-tight border-l-4 border-blue-600 pl-3">
-            {{ __('Terminal de Supervision') }}
+        <h2 class="font-semibold text-2xl text-gray-800 leading-tight">
+            {{ __('Tableau de Bord') }}
         </h2>
     </x-slot>
 
-    <div class="py-12 bg-slate-50 min-h-screen">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+    <div class="py-10 bg-gray-50 min-h-screen">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-8">
 
-            <div class="bg-slate-800 rounded-lg shadow-md overflow-hidden">
-                <div class="p-6 sm:p-10 flex flex-col md:flex-row items-center gap-6">
-                    <div class="w-20 h-20 bg-slate-700 border-2 border-slate-500 rounded-lg flex items-center justify-center text-slate-200 text-3xl font-bold shadow-inner shrink-0">
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                <div class="p-8 md:p-10 flex flex-col md:flex-row items-center gap-8">
+                    <div class="w-24 h-24 rounded-full bg-indigo-50 border-4 border-indigo-100 flex items-center justify-center text-indigo-600 text-4xl font-bold shrink-0">
                         {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
                     </div>
 
-                    <div class="text-white text-center md:text-left">
-                        <h3 class="text-2xl font-bold mb-1 tracking-wide">Nom Opérateur : {{ Auth::user()->name }}</h3>
-                        <div class="flex flex-wrap justify-center md:justify-start items-center gap-4 text-sm mt-2 text-slate-300">
-                            <span class="flex items-center gap-1">✉️ {{ Auth::user()->email }}</span>
-                            <span class="hidden md:inline text-slate-500">|</span>
+                    <div class="text-center md:text-left flex-1">
+                        <h3 class="text-3xl font-bold text-gray-900 tracking-tight mb-2">Bienvenue, {{ Auth::user()->name }}</h3>
+                        <p class="text-gray-500 font-medium mb-4">Content de vous revoir. Voici le résumé de l'activité sur vos sites.</p>
 
-                            <span class="px-2 py-1 bg-blue-500/20 text-blue-300 border border-blue-500/30 rounded font-mono text-xs uppercase tracking-widest">
-                                Rôle Assigné : {{ Auth::user()->role ?? 'TECHNICIEN_STANDARD' }}
+                        <div class="flex flex-wrap justify-center md:justify-start items-center gap-4 text-sm">
+                            <span class="flex items-center gap-2 text-gray-600 bg-gray-50 px-3 py-1.5 rounded-lg border border-gray-100">
+                                <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                                {{ Auth::user()->email }}
+                            </span>
+
+                            <span class="px-3 py-1.5 bg-indigo-50 text-indigo-700 rounded-lg border border-indigo-100 font-semibold text-xs uppercase tracking-wide flex items-center gap-2">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                                Rôle : {{ Auth::user()->role ?? 'Technicien' }}
                             </span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="mt-8">
-                <h3 class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-4">Modules Opérationnels</h3>
+            <div>
+                <h3 class="text-lg font-bold text-gray-900 mb-5">Accès Rapide</h3>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-                    <a href="{{ route('technicien.releves') }}" class="group bg-white rounded-r-lg border-y border-r border-slate-200 border-l-4 border-l-blue-600 p-6 hover:shadow-md transition">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h4 class="font-bold text-slate-800 group-hover:text-blue-700 transition">Gestion des Relevés</h4>
-                                <p class="text-sm text-slate-500 mt-2">Saisie et consultation des rapports de terrain.</p>
-                            </div>
-                            <div class="p-3 bg-blue-50 text-blue-600 rounded-md">
-                                📊
-                            </div>
+                    <a href="{{ route('technicien.releves') }}" class="group bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200">
+                        <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-200">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                         </div>
+                        <h4 class="font-bold text-gray-900 text-lg mb-1 group-hover:text-blue-600 transition-colors">Relevés Terrain</h4>
+                        <p class="text-sm text-gray-500">Consulter l'historique et rédiger de nouveaux rapports d'intervention.</p>
                     </a>
 
-                    <a href="{{ route('technicien.sites.index') }}" class="group bg-white rounded-r-lg border-y border-r border-slate-200 border-l-4 border-l-emerald-500 p-6 hover:shadow-md transition">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h4 class="font-bold text-slate-800 group-hover:text-emerald-700 transition">Infrastructures</h4>
-                                <p class="text-sm text-slate-500 mt-2">Supervision des sites et des capteurs installés.</p>
-                            </div>
-                            <div class="p-3 bg-emerald-50 text-emerald-600 rounded-md">
-                                🏭
-                            </div>
+                    <a href="{{ route('technicien.sites.index') }}" class="group bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200">
+                        <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-200">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
                         </div>
+                        <h4 class="font-bold text-gray-900 text-lg mb-1 group-hover:text-emerald-600 transition-colors">Infrastructures</h4>
+                        <p class="text-sm text-gray-500">Superviser l'état des sites d'extraction et gérer les capteurs.</p>
                     </a>
 
-                    <a href="{{ route('technicien.dashboard') }}" class="group bg-white rounded-r-lg border-y border-r border-slate-200 border-l-4 border-l-amber-500 p-6 hover:shadow-md transition">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h4 class="font-bold text-slate-800">Espace Technicien</h4>
-                                <p class="text-sm text-slate-500 mt-2">Documentation et outils (Accès restreint).</p>
-                            </div>
-                            <div class="p-3 bg-amber-50 text-amber-600 rounded-md">
-                                🛠️
-                            </div>
+                    <a href="{{ route('technicien.dashboard') }}" class="group bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200">
+                        <div class="w-12 h-12 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-200">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                         </div>
+                        <h4 class="font-bold text-gray-900 text-lg mb-1 group-hover:text-amber-600 transition-colors">Espace Technique</h4>
+                        <p class="text-sm text-gray-500">Accéder à la documentation technique et aux paramètres avancés.</p>
                     </a>
 
                 </div>
             </div>
 
-            <div class="bg-white border border-slate-200 rounded-lg shadow-sm mt-8 overflow-hidden">
-                <div class="bg-slate-100 border-b border-slate-200 px-6 py-4">
-                    <h3 class="font-bold text-slate-700 uppercase tracking-widest text-sm flex items-center gap-2">
-                        <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                        Journal des interventions
-                    </h3>
+            <div>
+                <div class="flex items-center justify-between mb-5">
+                    <h3 class="text-lg font-bold text-gray-900">Dernières Interventions</h3>
+                    <a href="{{ route('releves.index') }}" class="text-sm font-semibold text-indigo-600 hover:text-indigo-800 transition">Voir tout l'historique &rarr;</a>
                 </div>
 
-                <div class="divide-y divide-slate-100">
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                    <div class="divide-y divide-gray-100">
 
-                    @forelse ($derniersReleves as $releve)
-                        <div class="p-4 hover:bg-slate-50 transition flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        @forelse ($derniersReleves as $releve)
+                            <div class="p-5 hover:bg-gray-50 transition duration-150 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
 
-                            <div class="flex items-center gap-4">
-                                <div class="p-2 bg-slate-100 text-slate-600 rounded border border-slate-200">
-                                    📋
+                                <div class="flex items-center gap-4">
+                                    <div class="w-10 h-10 bg-gray-50 border border-gray-200 rounded-full flex items-center justify-center text-gray-400 shrink-0">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                                    </div>
+                                    <div>
+                                        <p class="font-bold text-gray-900 text-base">
+                                            {{ $releve->site->nom ?? 'Site non spécifié' }}
+                                        </p>
+                                        <div class="flex items-center gap-2 mt-1">
+                                            <span class="text-sm text-gray-500">
+                                                Relevé du {{ \Carbon\Carbon::parse($releve->date_releve)->format('d/m/Y') }}
+                                            </span>
+                                            <span class="w-1 h-1 bg-gray-300 rounded-full"></span>
+                                            <span class="text-sm font-medium text-gray-600">{{ ucfirst($releve->type_intervention ?? 'Routine') }}</span>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div>
-                                    <p class="font-bold text-slate-800">
-                                        {{ $releve->site->nom ?? 'Site inconnu' }}
-                                    </p>
-                                    <p class="text-xs text-slate-500 font-mono mt-1">
-                                        Saisi le {{ \Carbon\Carbon::parse($releve->date_releve)->format('d/m/Y') }}
-                                    </p>
+
+                                <div class="flex items-center gap-3">
+                                    <span class="text-sm font-medium text-gray-700 bg-gray-100 px-3 py-1 rounded-lg">
+                                        {{ $releve->profondeur }} m
+                                    </span>
+
+                                    @if($releve->anomalies)
+                                        <span class="px-3 py-1 bg-red-50 text-red-700 border border-red-100 rounded-lg text-xs font-bold uppercase tracking-wide flex items-center gap-1.5">
+                                            <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg>
+                                            Anomalie
+                                        </span>
+                                    @else
+                                        <span class="px-3 py-1 bg-green-50 text-green-700 border border-green-100 rounded-lg text-xs font-bold uppercase tracking-wide flex items-center gap-1.5">
+                                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                                            RAS
+                                        </span>
+                                    @endif
                                 </div>
+
                             </div>
-
-                            <div class="flex items-center gap-3">
-                                <span class="text-sm font-mono text-slate-600 border border-slate-200 px-2 py-1 rounded bg-white shadow-sm">
-                                    {{ $releve->profondeur }} m
-                                </span>
-
-                                @if($releve->anomalies)
-                                    <span class="px-2 py-1 bg-red-100/50 text-red-700 border border-red-200 text-xs font-bold rounded uppercase tracking-wider">
-                                        ⚠️ Anomalie
-                                    </span>
-                                @else
-                                    <span class="px-2 py-1 bg-emerald-100/50 text-emerald-700 border border-emerald-200 text-xs font-bold rounded uppercase tracking-wider">
-                                        ✓ RAS
-                                    </span>
-                                @endif
+                        @empty
+                            <div class="p-12 text-center flex flex-col items-center">
+                                <div class="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mb-4">
+                                    <svg class="w-8 h-8 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path></svg>
+                                </div>
+                                <h4 class="text-base font-bold text-gray-900 mb-1">Aucune intervention récente</h4>
+                                <p class="text-sm text-gray-500">
+                                    Les données se synchroniseront automatiquement lors de la première saisie.
+                                </p>
                             </div>
+                        @endforelse
 
-                        </div>
-                    @empty
-                        <div class="p-10 text-center">
-                            <p class="text-slate-500 font-mono text-sm">
-                                > En attente de synchronisation...<br>
-                                > Aucun relevé n'a encore été enregistré dans le système.
-                            </p>
-                        </div>
-                    @endforelse
-
+                    </div>
                 </div>
             </div>
 

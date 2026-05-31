@@ -16,6 +16,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'admin' => \App\Http\Middleware\CheckAdmin::class,
             'technicien' => \App\Http\Middleware\CheckTechnicien::class,
             'logistique' => \App\Http\Middleware\CheckLogistique::class,
+            'chefSite' => \App\Http\Middleware\CheckChefSite::class,
         ]);
     })
 

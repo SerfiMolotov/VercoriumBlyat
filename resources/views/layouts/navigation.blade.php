@@ -24,6 +24,12 @@
                         </x-nav-link>
                     @endif
 
+                    @if(Auth::user()->isChefSite())
+                        <x-nav-link :href="route('technicien.sites.index')" :active="request()->routeIs('technicien.sites.index')">
+                            Site et Capteurs
+                        </x-nav-link>
+                    @endif
+
                     @if(Auth::user()->isAdmin() || Auth::user()->isTechnicien() || Auth::user()->isChefSite() || Auth::user()->isLogistique())
                         <x-nav-link :href="route('releves.index')" :active="request()->routeIs('releves.*')">
                             Relevés de forage

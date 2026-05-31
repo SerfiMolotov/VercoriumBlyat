@@ -34,14 +34,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/users', [AdminUserController::class, 'index'])->name('admin.users');
     Route::post('/admin/users/{user}/role', [AdminUserController::class, 'updateRole'])->name('admin.users.updateRole');
+    Route::delete('/admin/users/{user}', [AdminUserController::class, 'destroy'])->name('admin.users.destroy');
 });
 
-Route::middleware(['auth', 'technicien'])->prefix('technicien')->group(function () {
-
-    Route::get('/dashboard', function () {
-        return view('technicien.dashboard');
-    })->name('technicien.dashboard');
-
+Route::middleware(['auth'])->prefix('technicien')->group(function () {
     Route::get('/sites', [TechnicienSiteController::class, 'index'])
         ->name('technicien.sites.index');
 
@@ -53,14 +49,27 @@ Route::middleware(['auth', 'technicien'])->prefix('technicien')->group(function 
 
     Route::get('/releves', [TechnicienReleveController::class, 'index'])
         ->name('technicien.releves');
+
     Route::get('/releves/create', [\App\Http\Controllers\Technicien\TechnicienReleveController::class, 'create'])
         ->name('technicien.releves.create');
+
     Route::post('/releves', [\App\Http\Controllers\Technicien\TechnicienReleveController::class, 'store'])
         ->name('technicien.releves.store');
 
-    Route::middleware(['auth', 'logistique'])->prefix('logistique')->group(function () {
-        Route::get('/materiels', [\App\Http\Controllers\Logistique\LogistiqueMaterielController::class, 'index'])->name('logistique.materiels.index');
-    });
+    Route::delete('/releves/{releve}', [TechnicienReleveController::class, 'destroy'])
+        ->name('technicien.releves.destroy');
+});
+
+Route::middleware(['auth', 'technicien'])->prefix('technicien')->group(function () {
+
+    Route::get('/dashboard', function () {
+        return view('technicien.dashboard');
+    })->name('technicien.dashboard');
+
+});
+
+Route::middleware(['auth', 'logistique'])->prefix('logistique')->group(function () {
+    Route::get('/materiels', [\App\Http\Controllers\Logistique\LogistiqueMaterielController::class, 'index'])->name('logistique.materiels.index');
 });
 
 require __DIR__.'/auth.php';
