@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Http\Request;
 use App\Http\Controllers\Back\AdminUserController;
 
 use App\Http\Controllers\Technicien\TechnicienDashboardController;
@@ -67,6 +67,24 @@ Route::middleware(['auth', 'technicien'])->prefix('technicien')->group(function 
     })->name('technicien.dashboard');
 
 });
+
+Route::middleware('auth:sanctum')->get('/me', function (Request $request) {
+    $user = $request->user();
+
+    return response()->json([
+        'id' => $user->id,
+        'name' => $user->name,
+        'email' => $user->email,
+        'role' => $user->role,
+        'permissions' => [
+            'is_admin' => $user->isAdmin(),
+            'is_technicien' => $user->isTechnicien(),
+            'is_chef_site' => $user->isChefSite(),
+            'is_logistique' => $user->isLogistique(),
+        ]
+    ]);
+});
+
 
 Route::middleware(['auth', 'logistique'])->prefix('logistique')->group(function () {
     Route::get('/materiels', [\App\Http\Controllers\Logistique\LogistiqueMaterielController::class, 'index'])->name('logistique.materiels.index');

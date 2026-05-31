@@ -11,8 +11,8 @@ class TestApiController extends Controller
 {
     public function index()
     {
-        return response()->json(Releve::all());
-    }
+        $releves = Releve::with(['user', 'site'])->orderBy('date_releve', 'desc')->get();
+        return response()->json($releves);    }
     public function addReleve(Request $request){
         $donneesValidees = $request->validate([
             'date_releve'  => 'required|date',
@@ -20,6 +20,16 @@ class TestApiController extends Controller
             'profondeur'   => 'required|numeric',
             'observations' => 'nullable|string',
             'anomalies'    => 'boolean',
+            'meteo'                   => 'nullable|string',
+            'type_intervention'       => 'required|string',
+            'duree_intervention'      => 'nullable|numeric',
+            'etat_structure'          => 'required|string',
+            'perimetre_securise'      => 'boolean',
+            'fuites_visibles'         => 'boolean',
+            'statut_production'       => 'required|string',
+            'niveau_stockage_general' => 'nullable|numeric',
+            'signature_technicien'    => 'boolean',
+
         ]);
 
         $donneesValidees['user_id'] = $request->user()->id;

@@ -8,26 +8,30 @@
     <div class="py-10 bg-gray-50 min-h-screen">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-8">
 
-            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-                <div class="p-8 md:p-10 flex flex-col md:flex-row items-center gap-8">
-                    <div class="w-24 h-24 rounded-full bg-indigo-50 border-4 border-indigo-100 flex items-center justify-center text-indigo-600 text-4xl font-bold shrink-0">
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden relative">
+
+                <img src="{{ asset('images/fond-accueil.jpg') }}" alt="Fond d'accueil"
+                     class="absolute inset-0 w-full h-full object-cover opacity-100">
+
+                <div class="absolute inset-0 bg-white/60"></div>
+
+                <div class="relative p-8 md:p-10 flex flex-col md:flex-row items-center gap-8">
+                    <div class="w-24 h-24 rounded-full bg-indigo-600/20 border-4 border-indigo-100 flex items-center justify-center text-indigo-700 text-4xl font-bold shrink-0">
                         {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
                     </div>
 
                     <div class="text-center md:text-left flex-1">
                         <h3 class="text-3xl font-bold text-gray-900 tracking-tight mb-2">Bienvenue, {{ Auth::user()->name }}</h3>
-                        <p class="text-gray-500 font-medium mb-4">Content de vous revoir. Voici le résumé de l'activité sur vos sites.</p>
+                        <p class="text-gray-700 font-medium mb-4">Content de vous revoir. Voici le résumé de l'activité sur l'ensemble des sites.</p>
 
                         <div class="flex flex-wrap justify-center md:justify-start items-center gap-4 text-sm">
-                            <span class="flex items-center gap-2 text-gray-600 bg-gray-50 px-3 py-1.5 rounded-lg border border-gray-100">
-                                <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                                {{ Auth::user()->email }}
-                            </span>
+                <span class="flex items-center gap-2 text-gray-700 bg-white/50 px-3 py-1.5 rounded-lg border border-gray-200">
+                    {{ Auth::user()->email }}
+                </span>
 
-                            <span class="px-3 py-1.5 bg-indigo-50 text-indigo-700 rounded-lg border border-indigo-100 font-semibold text-xs uppercase tracking-wide flex items-center gap-2">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
-                                Rôle : {{ Auth::user()->role ?? 'Technicien' }}
-                            </span>
+                            <span class="px-3 py-1.5 bg-indigo-600 text-white rounded-lg font-semibold text-xs uppercase tracking-wide">
+                    Rôle : {{ Auth::user()->role ?? 'Technicien' }}
+                </span>
                         </div>
                     </div>
                 </div>
