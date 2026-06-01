@@ -7,6 +7,8 @@ use App\Models\Releve;
 use App\Models\Site;
 use Illuminate\Http\Request;
 use App\Models\Capteur;
+use App\Models\CapteurDonnee;
+
 class TestApiController extends Controller
 {
     public function index()
@@ -87,5 +89,18 @@ class TestApiController extends Controller
             'message' => 'Site créé avec succès',
             'site' => $site
         ], 201);
+    }
+
+    public function getCapteurDonnees($id) {
+        $capteur = Capteur::with('site')->findOrFail($id);
+
+        $donnees = CapteurDonnee::where('capteur_id', $id)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return response()->json([
+            'capteur' => $capteur,
+            'donnees' => $donnees
+        ]);
     }
 }

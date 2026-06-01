@@ -20,4 +20,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/sites/{id}', [TestApiController::class, 'updateSite']);
     Route::get('/sites/{id}/capteurs', [TestApiController::class, 'getCapteursBySite']);
     Route::post('/sites', [TestApiController::class, 'addSite']);
+    Route::get('/capteurs/{id}/donnees', [TestApiController::class, 'getCapteurDonnees']);
 });

@@ -44,8 +44,17 @@ Route::middleware(['auth'])->prefix('technicien')->group(function () {
     Route::get('/sites/{site}/capteurs', [TechnicienCapteurController::class, 'index'])
         ->name('technicien.site.capteurs');
 
+    Route::post('/capteurs/{capteur}/simuler', [TechnicienCapteurController::class, 'simuler'])
+        ->name('technicien.capteurs.simuler');
+
     Route::get('/capteurs/{capteur}/donnees', [TechnicienCapteurController::class, 'show'])
         ->name('technicien.capteurs.show');
+
+    Route::get('/sites/{site}/capteurs/create', [TechnicienCapteurController::class, 'create'])
+        ->name('technicien.capteurs.create');
+
+    Route::post('/sites/{site}/capteurs', [TechnicienCapteurController::class, 'store'])
+        ->name('technicien.capteurs.store');
 
     Route::get('/releves', [TechnicienReleveController::class, 'index'])
         ->name('technicien.releves');
